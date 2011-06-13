@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <link rel="stylesheet" href="/stylesheets/stylesheet.css" type="text/css" charset="utf-8">
+	<style type="text/css" media="screen">
+  
+		h1{
+      font: 40px/48px 'MomsTypewriterRegular', Arial, sans-serif;letter-spacing: 0;
+      color:white;
+    }
+  
+    a{
+      color:white;
+    }
+
+		
+		#container {
+			width: 800px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+       
+    div.conversation{
+      margin-top:50px;
+    }
+    
+    .conversation h2{
+      font: 18px 'MomsTypewriterRegular', Arial, sans-serif;letter-spacing: 0;
+      color:white;
+    }
+    
+    .conversation p{
+      font: 13px 'MomsTypewriterRegular', Arial, sans-serif;letter-spacing: 0;
+      color:white;
+      line-height:80%
+    }
+    
+     p{
+      font: 16px 'MomsTypewriterRegular', Arial, sans-serif;letter-spacing: 0;
+      color:white;
+      line-height:80%
+    }
+	</style>
+<style>
+  body{
+    background:url('/background.gif') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  
+</style>
+</head>
+<body>
+  <div id="container">
+    <p>There is a machine, somewhere in London, that logs onto <a href='http://omegle.com'>Omegle</a> and says...</p>
+    
+    <h1>> I hope I don't fall in love <br/> with you.</h1>
+    
+    <p>You can read more about it here.</p>
+    
+    <div id="conversations">
+    
+    <% @conversations.each do |convo| %>
+    <div class="conversation">
+      <h2>Stranger #<%=convo['omegle_id']%>: <%=convo['date'].strftime("%A, %B %d %Y at %I:%M%p ")
+%></h2>
+      <%convo['history'].select{|h| h['status'] == "gotMessage" }.each do |message| %>
+        <p><%= message['message'] %></p>
+      <%end%>
+      <p>Stranger Disconnected</p>
+    </div>
+    <%end%>
+    
+    
+    
+</div>
+</body>
+</html>
