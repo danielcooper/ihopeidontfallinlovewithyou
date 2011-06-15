@@ -1,0 +1,9 @@
+<div id="conversations">
+  <div class="conversation">
+      <h2>Stranger <a href="/conversations/<%=@conversation['omegle_id']%>">#<%=@conversation['omegle_id']%></a>: <%=@conversation['date'].strftime("%A, %B %d %Y at %I:%M%p ")%></h2>
+      <%@conversation['history'].select{|h| h['status'] == "gotMessage" }.each do |message| %>
+        <p><%= message['message'] %></p>
+      <%end%>
+      <p>Stranger Disconnected</p>
+</div>
+</div>

@@ -44,7 +44,7 @@ class OmegleClient
       begin
         eventraw = Net::HTTP.post_form(URI.parse("#{BASE_URI}/events"), {'id' => @chat_id})
 	      create_response_from_json(JSON.parse(eventraw.body))
-      rescue Timeout::Error
+      rescue Timeout::Error, JSON::ParserError
         create_response_from_json [['strangerDisconnected']]
       end
     end
