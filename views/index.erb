@@ -1,3 +1,15 @@
+<script>
+$(document).ready(function(){
+  last = <%=@conversations.last['date'].to_i%>;
+  $('#view_more').click(function() {
+    $.get('/before/'+last, function(data) {
+      $('#conversations').append(data);
+    });
+
+  });
+});
+</script>
+    
     <p>You can read more about it here.</p>
 
     <div id="conversations">
@@ -5,6 +17,7 @@
     <% @conversations.each do |convo| %>
     <div class="conversation">
       <h2>Stranger <a href="./conversations/<%=convo['omegle_id']%>">#<%=convo['omegle_id']%></a>: <%=convo['date'].strftime("%A, %B %d %Y at %I:%M%p ")%></h2>
+      
       <%convo['history'].select{|h| h['status'] == "gotMessage" }.each do |message| %>
         <p><%= message['message'] %></p>
       <%end%>
@@ -12,4 +25,7 @@
     </div>
     <%end%>
   </div>
+  
+  <p id="view_more">View More...</p>
+
 

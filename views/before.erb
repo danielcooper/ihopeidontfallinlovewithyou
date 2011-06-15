@@ -1,0 +1,10 @@
+<script>last = <%=@conversations.last['date'].to_i%>;</script>
+<% @conversations.each do |convo| %>
+    <div class="conversation">
+      <h2>Stranger <a href="./conversations/<%=convo['omegle_id']%>">#<%=convo['omegle_id']%></a>: <%=convo['date'].strftime("%A, %B %d %Y at %I:%M%p ")%></h2>
+      <%convo['history'].select{|h| h['status'] == "gotMessage" }.each do |message| %>
+        <p><%= message['message'] %></p>
+      <%end%>
+      <p>Stranger Disconnected</p>
+    </div>
+<%end%>

@@ -54,3 +54,12 @@ body{
   -o-background-size: cover;
   background-size: cover;
 }
+
+#view_more{
+  margin-top:40px;
+  margin-left: 200px;
+  font-size: 13px;
+  text-align: left;
+  text-decoration: underline ;
+  cursor: pointer; cursor: hand
+}
